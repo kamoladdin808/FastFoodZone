@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="icon.ffz.png" type="image/png">
+  <link rel="preload" as="image" href="bacon_burger-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="pizza-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="pizza_425-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="pizza_spin-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="burger-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="cheese-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="cheese_burger-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="cheese_shawarma-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="chicken_burger-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="coca_cola-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="fanta-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="hawaiian-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="icon.ffz.png" type="image/webp">
+  <link rel="preload" as="image" href="icons8-burger-50.webp" type="image/webp">
+  <link rel="preload" as="image" href="icons8-pizza-50.webp" type="image/webp">
+  <link rel="preload" as="image" href="icons8-shawarma-50.webp" type="image/webp">
+  <link rel="preload" as="image" href="icons8-soda-50.webp" type="image/webp">
+  <link rel="preload" as="image" href="istockphoto-1414575281-1024x1024.jpg" type="image/webp">
+  <link rel="preload" as="image" href="main_pizza-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="main_shawarma-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="main_soda-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="margarita_pizza-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="meat-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="peperoni-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="pngwing.com(3).png" type="image/webp">
+  <link rel="preload" as="image" href="shawarma_beff-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="sparkling_water-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="spining_burger.webp" type="image/webp">
+  <link rel="preload" as="image" href="spining_pizza.webp" type="image/webp">
+  <link rel="preload" as="image" href="spining_shawarma.webp" type="image/webp">
+  <link rel="preload" as="image" href="spining_soda.webp" type="image/webp">
+  <link rel="preload" as="image" href="sprite-min.webp" type="image/webp">
+  <link rel="preload" as="image" href="veggie-min.webp" type="image/webp">
+  <title>FastFoodZone</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #4e342e;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      color: #fff;
+    }
+
+    header {
+      background-color: #4e342e;
+      padding: 20px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #3e2723;
+      padding: 15px 30px;
+    }
+
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #ffcc80;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li {
+      color: #ffcc80;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-links li:hover {
+      color: #ffffff;
+    }
+
+    /* Hero section */
+    .hero-left {
+      max-width: 600px;
+      color: #fff7e6;
+      position: relative;
+      left: 5%;
+      top: 120px;
+    }
+
+    .hero-left h1 {
+      font-size: clamp(1.8rem, 4vw, 4rem);
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-left p {
+      font-size: clamp(1rem, 1.4vw, 1.4rem);
+      line-height: 1.6;
+      margin-bottom: 30px;
+      color: #f2e3d0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background-color: #ffae42;
+      color: #3b1f0d;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #ff9900;
+    }
+
+    .pizza-spin {
+      /* border: 2px solid #ffcc80; */
+      width: 500px;
+      height: 500px;
+      position: relative;
+      left: 65%;
+      bottom: 220px;
+    }
+
+    .pizza-spin img {
+      width: 500px;
+      height: 500px;
+      animation: spin 8s linear infinite;
+      transform: translateZ(0);
+      will-change: transform;
+      image-rendering: optimizeSpeed;
+      backface-visibility: hidden;
+    }
+
+
+    .fade-out {
+      opacity: 0;
+    }
+
+    #rotatingDish {
+      transition: opacity 1s ease-in-out;
+      opacity: 1;
+      will-change: opacity;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    main {
+      background-color: #3b1f0d;
+    }
+
+    #pizza_425 {
+      display: none;
+    }
+
+    .menu {
+      padding: 80px 100px;
+      color: #fff7e6;
+      text-align: center;
+    }
+
+    .menu h2 {
+      font-size: 3rem;
+      margin-bottom: 50px;
+      text-shadow: 2px 2px #00000050;
+    }
+
+    #dishes {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 50px;
+      margin-top: 50px;
+    }
+
+    #burger {
+      /* border: 2px solid red; */
+      height: 1000%;
+      width: 25%;
+      margin: 0 auto;
+    }
+
+    #img_container_burger {
+      position: relative;
+      /* border: 1px solid red; */
+      width: 300px;
+      height: 100px;
+      border-radius: 30px;
+      margin: 50px auto;
+      overflow: hidden;
+    }
+
+    #img_burger {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(2px);
+      z-index: 0;
+    }
+
+    #burger_text {
+      position: relative;
+      z-index: 1;
+      color: white;
+      font-size: 34px;
+      font-weight: 1000;
+      margin: 30px auto;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    #main-pizza {
+      /* border: 2px solid red; */
+      height: 1000%;
+      width: 25%;
+    }
+
+    #img_container_pizza {
+      position: relative;
+      /*border: 1px solid red;*/
+      width: 300px;
+      height: 100px;
+      border-radius: 30px;
+      margin: 50px auto;
+      overflow: hidden;
+    }
+
+    #img_pizza {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(2px);
+      z-index: 0;
+    }
+
+    #pizza_text {
+      position: relative;
+      z-index: 1;
+      color: white;
+      font-size: 34px;
+      font-weight: 1000;
+      margin: 30px auto;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    #main-shawarma {
+      /* border: 2px solid red; */
+      height: 1000%;
+      width: 25%;
+      margin: 0 auto;
+    }
+
+    #img_container_shawarma {
+      position: relative;
+      /*border: 1px solid red;*/
+      width: 300px;
+      height: 100px;
+      border-radius: 30px;
+      margin: 50px auto;
+      overflow: hidden;
+    }
+
+    #img_shawarma {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(2px);
+      z-index: 0;
+    }
+
+    #shawarma_text {
+      position: relative;
+      z-index: 1;
+      color: white;
+      font-size: 34px;
+      font-weight: 1000;
+      margin: 30px auto;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    #main-soda {
+      /* border: 2px solid red; */
+      height: 1000%;
+      width: 25%;
+      margin: 0 auto;
+    }
+
+    #img_container_soda {
+      position: relative;
+      /*border: 1px solid red;*/
+      width: 300px;
+      height: 100px;
+      border-radius: 30px;
+      margin: 50px auto;
+      overflow: hidden;
+    }
+
+    #img_soda {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(2px);
+      z-index: 0;
+    }
+
+    #soda_text {
+      position: relative;
+      z-index: 1;
+      color: white;
+      font-size: 34px;
+      font-weight: 1000;
+      margin: 30px auto;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .dish-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      padding: 50px 20px;
+    }
+
+    .dish-card {
+      background-color: #5c2e1a;
+      border-radius: 16px;
+      overflow: hidden;
+      width: 250px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      color: #fff7e6;
+      transition: transform 0.3s ease;
+    }
+
+    .dish-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .dish-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+    }
+
+    .dish-card h3 {
+      font-size: 1.4rem;
+      margin: 10px 0 5px;
+    }
+
+    .dish-card p {
+      font-size: 0.95rem;
+      padding: 0 10px;
+      margin-bottom: 10px;
+    }
+
+    .dish-card .price {
+      display: inline-block;
+      margin-bottom: 15px;
+      font-weight: bold;
+      color: #ffce8a;
+      font-size: 1.2rem;
+    }
+
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 15px 0 20px;
+    }
+
+    .quantity-selector button {
+      background-color: #ffce8a;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .quantity-selector button:hover {
+      background-color: #ffc04d;
+    }
+
+    .quantity-selector .quantity {
+      font-size: 1.2rem;
+      font-weight: bold;
+      min-width: 24px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .site-footer {
+      width: 100%;
+      max-width: 1550px;
+      margin: 0 auto;
+      padding: 50px 20px;
+      box-sizing: border-box;
+      background-color: #3e2723;
+      color: #fff7e6;
+      padding-top: 50px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .footer-column {
+      flex: 1 1 250px;
+    }
+
+    .footer-column h4 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .footer-column h4::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 2px;
+      background-color: #ffae42;
+      margin-top: 5px;
+    }
+
+    .footer-column p,
+    .footer-column ul {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+      color: #fff7e6;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-column ul li a:hover {
+      color: #ffae42;
+    }
+
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .social-links li+li {
+      margin-top: 10px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid #5d4037;
+      margin-top: 40px;
+      padding: 20px 0;
+      font-size: 0.85rem;
+      color: #cbb69e;
+    }
+
+    .menu_nav {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      background: rgba(74, 43, 35, 0.95);
+      padding: 10px;
+      border-radius: 30px;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .menu-item {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      color: #f8e0d4;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .menu-item:hover {
+      width: 150px;
+      border-radius: 25px;
+      background-color: #7b3e2d;
+      border-color: transparent;
+    }
+
+    .menu-item .text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      font-size: 10px;
+      transition: opacity 0.4s ease;
+      z-index: 1;
+    }
+
+    .menu-item:hover .text {
+      opacity: 1;
+      font-size: 20px;
+    }
+
+    .menu-item img {
+      width: 35px;
+      height: 35px;
+      z-index: 2;
+      transition: opacity 0.3s ease;
+    }
+
+    .menu-item:hover img {
+      opacity: 0;
+    }
+
+    #scrollToTopBtn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 68px;
+      height: 68px;
+      border: none;
+      border-radius: 50%;
+      background-color: #7b3e2d;
+      color: #fff;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.3s ease, opacity 0.3s;
+    }
+
+    #scrollToTopBtn:hover {
+      background-color: #733007;
+    }
+
+
+
+    @media (width: 1440px) {
+
+      body {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .container {
+        width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .navbar {
+        padding: 25px 45px;
+      }
+
+
+      .hero-left {
+        width: 550px;
+        padding: 40px;
+      }
+
+      .hero-left h1 {
+        font-size: 3rem;
+        margin-bottom: 25px;
+      }
+
+      .pizza-spin {
+        width: 430px;
+        height: 430px;
+        right: 7%;
+        bottom: 180px;
+      }
+
+      main {
+        position: relative;
+        top: 100px;
+      }
+
+      .menu {
+        padding: 70px 90px;
+      }
+
+      .menu h2 {
+        font-size: 2.8rem;
+      }
+
+
+      .dish-cards {
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+        gap: 35px;
+        padding: 40px;
+      }
+
+      .footer-container {
+        margin-top: 70px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+        max-width: 1350px;
+      }
+
+
+      .menu_nav {
+        padding: 12px 25px;
+        gap: 18px;
+      }
+
+      .menu-item {
+        width: 68px;
+        height: 68px;
+      }
+
+      #scrollToTopBtn {
+        width: 84px;
+        height: 84px;
+        font-size: 40px;
+        bottom: 40px;
+        right: 100px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      body {
+        font-size: 15px;
+        overflow-x: hidden;
+      }
+
+      .navbar {
+        padding: 10px 20px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .hero-left {
+        max-width: 90%;
+        margin: 60px auto 20px;
+        text-align: center;
+        position: static;
+        padding: 0 20px;
+      }
+
+      .pizza-spin {
+        width: 400px;
+        height: 400px;
+        position: static;
+        margin: 50px auto;
+      }
+
+      .pizza-spin img {
+        width: 100%;
+        height: 100%;
+      }
+
+      main {
+        position: relative;
+        top: 80px;
+      }
+
+      .menu {
+        padding: 60px 40px;
+      }
+
+      .menu h2 {
+        font-size: 2.4rem;
+      }
+
+      .dish-cards {
+        gap: 40px;
+        padding: 30px;
+      }
+
+      .dish-card {
+        width: 300px;
+      }
+
+      .footer-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        padding: 25px 30px;
+      }
+
+      .menu_nav {
+        bottom: 10px;
+      }
+
+      #scrollToTopBtn {
+        width: 56px;
+        height: 56px;
+        bottom: 60px;
+        right: 20px;
+      }
+    }
+
+
+    @media (max-width: 768px) {
+
+
+      body {
+        overflow-x: hidden;
+      }
+
+
+      .navbar {
+        flex-direction: column;
+        padding: 10px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+        gap: 10px;
+      }
+
+      .hero-left {
+        position: static;
+        max-width: 100%;
+        text-align: center;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      .pizza-spin {
+        display: none;
+      }
+
+      #pizza_425 {
+        display: block;
+        width: min(250px, 70%);
+        margin: 20px auto;
+        animation: spin 8s linear infinite;
+      }
+
+      @keyframes identifier {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+
+      }
+
+      main {
+        position: relative;
+        top: 100px;
+      }
+
+      .menu {
+        padding: 40px 20px;
+        position: relative;
+        bottom: 10px;
+      }
+
+      .menu h2 {
+        font-size: 2rem;
+        position: relative;
+        display: inline-block;
+
+      }
+
+      #dishes {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      #main-pizza,
+      #main-burger,
+      #main-shawarma,
+      #main-soda {
+        width: 100%;
+        line-height: 50px;
+      }
+
+      #img_container_pizza,
+      #img_container_burger,
+      #img_container_shawarma,
+      #img_container_soda {
+        width: 250px;
+        height: 80px;
+        margin: 20px auto;
+      }
+
+      #pizza_text,
+      #burger_text,
+      #shawarma_text,
+      #soda_text {
+        font-size: 30px;
+        margin: 15px auto;
+      }
+
+      .dish-cards {
+        flex-direction: column;
+        gap: 50px;
+        padding: 20px;
+      }
+
+      .dish-card {
+        width: 100%;
+        max-width: 280px;
+      }
+
+
+      .menu_nav {
+        bottom: 5px;
+        gap: 5px;
+        padding: 8px;
+      }
+
+      .menu-item {
+        width: 40px;
+        height: 40px;
+      }
+
+      .menu-item img {
+        width: 25px;
+        height: 25px;
+      }
+
+      .menu-item:hover {
+        width: 120px;
+      }
+
+
+      #scrollToTopBtn {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+        bottom: 70px;
+        right: 15px;
+      }
+
+      .site-footer {
+        width: 100%;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        gap: 20px;
+        position: relative;
+        top: 50px;
+      }
+
+      .footer-column {
+        flex: 1 1 100%;
+        text-align: center;
+      }
+
+      .footer-column h4::after {
+        margin: 0 auto;
+      }
+
+      .social-links {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .social-links li+li {
+        margin-top: 0;
+        margin-left: 15px;
+      }
+    }
+
+
+    @media (max-width: 425px) {
+      body {
+        font-size: 14px;
+        overflow-x: hidden;
+      }
+
+      .navbar {
+        flex-direction: column;
+        padding: 10px;
+      }
+
+      .hero-left h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-left p {
+        font-size: 1rem;
+      }
+
+      .pizza-spin {
+        display: none;
+      }
+
+      .pizza-spin img {
+        display: none;
+      }
+
+      main {
+        width: 430px;
+      }
+
+      .menu {
+        padding: 30px 15px;
+      }
+
+      .menu h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+
+
+      #img_container_pizza,
+      #img_container_burger,
+      #img_container_shawarma,
+      #img_container_soda {
+        width: 200px;
+        height: 70px;
+        margin: 20px auto;
+      }
+
+      #pizza_text,
+      #burger_text,
+      #shawarma_text,
+      #soda_text {
+        font-size: 1.4rem;
+      }
+
+
+      .dish-cards {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 0;
+      }
+
+      .dish-card {
+        width: 90%;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+
+
+      .site-footer {
+        width: 115%;
+        margin: 0 auto;
+        box-sizing: border-box;
+      }
+
+      .footer-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+        width: 100%;
+        box-sizing: border-box;
+        justify-items: center;
+      }
+
+      .footer-column {
+        text-align: center;
+        width: 100%;
+      }
+
+      .footer-column h4::after {
+        margin: 5px auto;
+      }
+
+      .social-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 15px;
+      }
+
+      .menu_nav {
+        bottom: 10px;
+        padding: 8px 12px;
+        transform: translateX(-50%) scale(0.85);
+      }
+
+      .menu-item {
+        width: 50px;
+        height: 50px;
+      }
+
+      .menu-item img {
+        width: 40px;
+        height: 40px;
+      }
+
+      #scrollToTopBtn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        bottom: 70px;
+        right: 15px;
+      }
+    }
+
+    @media (max-width: 375px) {
+      body {
+        font-size: 13px;
+        overflow-x: hidden;
+      }
+
+      .hero-left h1 {
+        font-size: 1.6rem;
+      }
+
+      .nav-links {
+        gap: 8px;
+      }
+
+      main {
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+        overflow-x: hidden;
+      }
+
+      .menu h2 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+      }
+
+
+      #img_container_pizza,
+      #img_container_burger,
+      #img_container_shawarma,
+      #img_container_soda {
+        width: 150px;
+        height: 50px;
+        margin: 10px auto;
+      }
+
+      #pizza_text,
+      #burger_text,
+      #shawarma_text,
+      #soda_text {
+        font-size: 1.1rem;
+        margin: 10px auto;
+      }
+
+
+      .dish-cards {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 5px;
+      }
+
+      .dish-card {
+        width: 95%;
+        max-width: none;
+        margin: 0 auto;
+      }
+
+      .dish-card h3 {
+        font-size: 1.1rem;
+      }
+
+      .dish-card p {
+        font-size: 0.8rem;
+      }
+
+      footer,
+      .site-footer {
+        width: 130%;
+        margin: 0 auto;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+      }
+
+      .footer-column {
+        text-align: center;
+      }
+
+      .footer-column h4::after {
+        margin: 5px auto;
+      }
+
+
+      .menu_nav {
+        bottom: 5px;
+        padding: 5px 8px;
+        gap: 5px;
+        transform: translateX(-50%) scale(0.7);
+      }
+
+      .menu-item {
+        width: 32px;
+        height: 32px;
+      }
+
+      .menu-item img {
+        width: 18px;
+        height: 18px;
+      }
+
+
+      #scrollToTopBtn {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+        bottom: 50px;
+        right: 5px;
+      }
+    }
+
+
+    @media (min-width: 320px) and (max-width: 425px) {
+
+
+      body {
+        font-size: 13px;
+        line-height: 1.4;
+        padding: 0;
+        overflow-x: hidden;
+      }
+
+      header {
+        position: relative;
+        left: 40px;
+      }
+
+      main {
+        width: 120%;
+        margin: 30px auto;
+        overflow-x: hidden;
+      }
+
+
+      .menu {
+        padding: 20px 10px;
+      }
+
+      .menu h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+
+      #img_container_pizza,
+      #img_container_burger,
+      #img_container_shawarma,
+      #img_container_soda {
+        width: 200px;
+        height: 65px;
+        margin: 15px auto;
+      }
+
+      #pizza_text,
+      #burger_text,
+      #shawarma_text,
+      #soda_text {
+        font-size: 2rem;
+        line-height: 1.3;
+      }
+
+
+      .dish-cards {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 5px;
+      }
+
+      .dish-card {
+        width: 95%;
+        max-width: none;
+        margin: 0 auto;
+      }
+
+      .dish-card h3 {
+        font-size: 1.1rem;
+      }
+
+      .dish-card p {
+        font-size: 0.8rem;
+      }
+
+      footer,
+      .site-footer {
+        width: 120%;
+        margin: 0 auto;
+        overflow-x: hidden;
+      }
+
+
+      .footer-container {
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 10px;
+      }
+
+      .footer-column {
+        text-align: center;
+        margin-bottom: 15px;
+      }
+
+      .footer-column h4::after {
+        margin: 5px auto;
+      }
+
+
+      .menu_nav {
+        bottom: 8px;
+        padding: 6px 10px;
+        gap: 6px;
+        transform: translateX(-50%) scale(0.75);
+      }
+
+      .menu-item {
+        width: 60px;
+        height: 60px;
+      }
+
+      .menu-item img {
+        width: 50px;
+        height: 50px;
+      }
+
+      #scrollToTopBtn {
+        width: 60px;
+        height: 60px;
+        font-size: 16px;
+        bottom: 60px;
+        right: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <section class="hero-left">
+      <h1>FastFoodZone</h1>
+      <p>Пицца, бургеры, шаверма и холодные напитки — всё, что ты хочешь, в одном месте. Вкусно. Быстро. Сочно.</p>
+      <a href="#" class="btn">Смотреть меню</a>
+    </section>
+    <section class="pizza-spin">
+      <img id="rotatingDish" src="spining_pizza.webp" alt="Вращающаяся пицца">
+    </section>
+    <img id="pizza_425" src="pngwing.com(3).png" alt="">
+  </header>
+  <main>
+    <section class="menu">
+      <h2>Меню</h2>
+      <div id="dishes">
+        <div id="main-pizza">
+          <div id="img_container_pizza">
+            <img id="img_pizza" src="main_pizza-min.webp" alt="" />
+            <p id="pizza_text">Pizza</p>
+          </div>
+        </div>
+      </div>
+      <section class="dish-cards">
+        <div class="dish-card">
+          <img src="margarita_pizza-min.webp" alt="Пицца">
+          <h3>Маргарита</h3>
+          <p>Классическая пицца с томатами, сыром и базиликом</p>
+          <span class="price">от 499 ₽</span>
+
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <img src="peperoni-min.webp" alt="Пицца Пепперони">
+          <h3>Пепперони</h3>
+          <p>Острая салями, сыр моцарелла, томатный соус</p>
+          <span class="price">от 599 ₽</span>
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <img src="hawaiian-min.webp" alt="Гавайская пицца">
+          <h3>Гавайская</h3>
+          <p>Ветчина, ананасы, сыр, томатный соус</p>
+          <span class="price">от 549 ₽</span>
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <img src="cheese-min.webp" alt="Четыре сыра">
+          <h3>Сырный</h3>
+          <p>Моцарелла, пармезан, дорблю, эмменталь</p>
+          <span class="price">от 649 ₽</span>
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <img src="meat-min.webp" alt="Мясная пицца">
+          <h3>Мясная</h3>
+          <p>Бекон, ветчина, курица, салями, сыр</p>
+          <span class="price">от 679 ₽</span>
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <img src="veggie-min.webp" alt="Овощная пицца">
+          <h3>Овощная</h3>
+          <p>Оливки, грибы, перец, помидоры, лук</p>
+          <span class="price">от 519 ₽</span>
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+        </div>
+      </section>
+
+      <div id="main-burger">
+        <div id="img_container_burger">
+          <img id="img_burger" src="burger-min.webp" alt="" />
+          <p id="burger_text">Burger</p>
+        </div>
+      </div>
+      <section class="dish-cards">
+        <div class="dish-card">
+          <img src="burger-min.webp" alt="Классический бургер">
+          <h3>Классический бургер</h3>
+          <p>Говяжья котлета, салат, помидор, лук, соус</p>
+          <span class="price">от 299 ₽</span>
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <img src="cheese_burger-min.webp" alt="Чизбургер">
+          <h3>Чизбургер</h3>
+          <p>Говяжья котлета, сыр, салат, помидор, соус</p>
+          <span class="price">от 349 ₽</span>
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <img src="bacon_burger-min.webp" alt="Бургер с беконом">
+          <h3>Бургер с беконом</h3>
+          <p>Говяжья котлета, бекон, сыр, салат, соус</p>
+          <span class="price">от 399 ₽</span>
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <img src="chicken_burger-min.webp" alt="Чикенбургер">
+          <h3>Чикенбургер</h3>
+          <p>Хрустящая курица, салат, соус, булочка с кунжутом</p>
+          <span class="price">от 389 ₽</span>
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+        </div>
+      </section>
+
+      <div id="main-shawarma">
+        <div id="img_container_shawarma">
+          <img id="img_shawarma" src="main_shawarma-min.webp" alt="" />
+          <p id="shawarma_text">Shawarma</p>
+        </div>
+      </div>
+      <section class="dish-cards">
+        <div class="dish-card">
+          <img src="chicken_shawarma-min.webp" alt="Куриная шаверма">
+          <h3>Куриная шаверма</h3>
+          <p>Курица, свежие овощи, соус, лаваш</p>
+          <span class="price">от 199 ₽</span>
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <img src="shawarma_beff-min.webp" alt="Говяжья шаверма">
+          <h3>Говяжья шаверма</h3>
+          <p>Говядина, свежие овощи, соус, лаваш</p>
+          <span class="price">от 249 ₽</span>
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <img src="cheese_shawarma-min.webp" alt="Сырная шаверма">
+          <h3>Сырная</h3>
+          <p>Курица, плавленый сыр, соус чесночный</p>
+          <span class="price">от 339 ₽</span>
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+        </div>
+      </section>
+
+      <div id="main-soda">
+        <div id="img_container_soda">
+          <img id="img_soda" src="main_soda-min.webp" alt="" />
+          <p id="soda_text">Soda</p>
+        </div>
+      </div>
+      <section class="dish-cards">
+        <div class="dish-card">
+          <img src="coca_cola-min.webp" alt="Кока-Кола">
+          <h3>Кока-Кола</h3>
+          <p>Освежающий газированный напиток</p>
+          <span class="price">от 99 ₽</span>
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <img src="sprite-min.webp" alt="Спрайт">
+          <h3>Спрайт</h3>
+          <p>Лимонно-лаймовый газированный напиток</p>
+          <span class="price">от 99 ₽</span>
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <img src="fanta-min.webp" alt="Фанта">
+          <h3>Фанта</h3>
+          <p>Апельсиновый газированный напиток</p>
+          <span class="price">от 99 ₽</span>
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <img src="sparkling_water-min.webp" alt="Минеральная вода">
+          <h3>Минеральная вода</h3>
+          <p>Чистая питьевая вода без газа</p>
+          <span class="price">от 49 ₽</span>
+          <div class="quantity-selector">
+            <button class="minus">−</button>
+            <span class="quantity">0</span>
+            <button class="plus">+</button>
+          </div>
+      </section>
+    </section>
+    <div class="menu_nav">
+      <div class="menu-item" data-target="home">
+        <img id="icon1" src="icons8-pizza-50.webp" alt="" />
+        <div id="text_1" class="text">Pizza</div>
+      </div>
+      <div class="menu-item" data-target="skills">
+        <img id="icon2" src="icons8-burger-50.webp" alt="" />
+        <div id="text_2" class="text">Burger</div>
+      </div>
+      <div class="menu-item" data-target="about">
+        <img id="icon3" src="icons8-shawarma-50.webp" alt="" />
+        <div id="text_3" class="text">Shawarma</div>
+      </div>
+      <div class="menu-item" data-target="project">
+        <img id="icon4" src="icons8-soda-50.webp" alt="" />
+        <div id="text_4" class="text">Soda</div>
+      </div>
+    </div>
+    <button id="scrollToTopBtn" title="Наверх">↑</button>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-column about">
+        <h4>О нас</h4>
+        <p>
+          FastFoodZone — это место, где вы найдёте лучшие бургеры, пиццу, шаверму и напитки.
+          Мы готовим с любовью и доставляем быстро!
+        </p>
+      </div>
+
+      <div class="footer-column contacts">
+        <h4>Контакты</h4>
+        <ul>
+          <li>🏠 Ул. Феруз, д. 110, Узбекистан</li>
+          <li>📞 +998 (99) 105-16-10</li>
+          <li>✉️ info@fastfoodzone.uz</li>
+        </ul>
+      </div>
+
+      <div class="footer-column socials">
+        <h4>Мы в соцсетях</h4>
+        <ul class="social-links">
+          <li><a href="#" target="_blank">Instagram</a></li>
+          <li><a href="#" target="_blank">Facebook</a></li>
+          <li><a href="#" target="_blank">VK</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 FastFoodZone. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.dish-card').forEach(card => {
+      const minus = card.querySelector('.minus');
+      const plus = card.querySelector('.plus');
+      const quantity = card.querySelector('.quantity');
+
+      minus.addEventListener('click', () => {
+        let count = parseInt(quantity.textContent);
+        if (count > 0) quantity.textContent = count - 1;
+      });
+
+      plus.addEventListener('click', () => {
+        let count = parseInt(quantity.textContent);
+        quantity.textContent = count + 1;
+      });
+    });
+    document.querySelectorAll('.menu-item').forEach((item, index) => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      item.addEventListener('click', () => {
+        const positions = [1050, 2150, 2820, 3490];
+        window.scrollTo({
+          top: positions[index],
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    const getScrollPositions = () => {
+      if (window.innerWidth >= 2560) {
+        return [0, 1000, 2340, 3700, 12000];
+      } else if (window.innerWidth >= 1440) {
+        return [1050, 2200, 2850, 3560];
+      } else if (window.innerWidth >= 1024) {
+        return [1050, 2500, 3550, 4590];
+      } else if (window.innerWidth >= 768) {
+        return [850, 3505, 5320, 6700];
+      } else if (window.innerWidth >= 425) {
+        return [880, 3530, 5350, 6720];
+      } else if (window.innerWidth >= 375) {
+        return [400, 3210, 4845, 6090];
+      }
+    }
+
+    document.querySelectorAll('.menu-item').forEach((item, index) => {
+      item.addEventListener('click', () => {
+        const positions = getScrollPositions();
+        window.scrollTo({
+          top: positions[index],
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 100) {
+        scrollToTopBtn.style.display = "block";
+      } else {
+        scrollToTopBtn.style.display = "none";
+      }
+    });
+
+
+    scrollToTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+
+    const dishImages = [
+      'spining_pizza.webp',
+      'spining_burger.webp',
+      'spining_shawarma.webp',
+      'spining_soda.webp'
+    ];
+
+    let index = 0;
+    const dishImg = document.getElementById('rotatingDish');
+
+    setInterval(() => {
+      dishImg.style.opacity = 0;
+
+
+      setTimeout(() => {
+        index = (index + 1) % dishImages.length;
+        dishImg.src = dishImages[index];
+        dishImg.style.opacity = 1;
+      }, 900);
+
+    }, 3000);
+  </script>
+</body>
+
+</html>
