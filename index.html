@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="icon.ffz.png" type="image/png">
+  <title>FastFoodZone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4e342e;
+      --primary-dark: #3e2723;
+      --primary-light: #5d4037;
+      --secondary: #ffae42;
+      --secondary-dark: #e65100;
+      --text-light: #fff7e6;
+      --text-lighter: #f2e3d0;
+      --card-bg: #5c2e1a;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--primary);
+      color: var(--text-light);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Header & Navigation */
+    header {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background-color: var(--primary-dark);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled {
+      padding: 1rem 3rem;
+      background-color: rgba(62, 39, 35, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-lighter);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--secondary);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: var(--text-light);
+      margin: 5px;
+      transition: var(--transition);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      padding: 0 8%;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 600px;
+      z-index: 2;
+      transform: translateY(50px);
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards 0.3s;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      color: var(--text-lighter);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background-color: var(--secondary);
+      color: var(--primary-dark);
+      font-weight: 600;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(255, 174, 66, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 174, 66, 0.4);
+      background-color: var(--secondary-dark);
+      color: white;
+    }
+
+    .hero-image {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      z-index: 2;
+      transform: translateY(50px);
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards 0.5s;
+    }
+
+    .rotating-dish {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .dish-shadow {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 20px;
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
+      border-radius: 50%;
+      filter: blur(5px);
+      z-index: 1;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 70% 50%, rgba(78, 52, 46, 0.8) 0%, rgba(62, 39, 35, 0.9) 100%);
+      z-index: 1;
+    }
+
+    /* Menu Section */
+    .menu-section {
+      padding: 6rem 8%;
+      background-color: var(--primary-dark);
+      position: relative;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      bottom: -10px;
+      left: 25%;
+      background: linear-gradient(to right, var(--primary), var(--secondary), var(--primary));
+      border-radius: 2px;
+    }
+
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .category-tab {
+      padding: 0.8rem 1.5rem;
+      background-color: var(--primary-light);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .category-tab:hover {
+      background-color: var(--secondary);
+      color: var(--primary-dark);
+    }
+
+    .category-tab.active {
+      background-color: var(--secondary);
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .dish-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .dish-card {
+      background-color: var(--card-bg);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      position: relative;
+      transform: translateY(20px);
+      opacity: 0;
+    }
+
+    .dish-card.animate {
+      animation: fadeInUp 0.5s ease forwards;
+    }
+
+    .dish-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .dish-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .dish-card:hover .dish-image {
+      transform: scale(1.05);
+    }
+
+    .dish-info {
+      padding: 1.5rem;
+    }
+
+    .dish-name {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .dish-desc {
+      font-size: 0.9rem;
+      color: var(--text-lighter);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .dish-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .dish-price {
+      font-weight: 700;
+      color: var(--secondary);
+      font-size: 1.2rem;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .quantity-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: var(--secondary);
+      color: var(--primary-dark);
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quantity-btn:hover {
+      background-color: var(--secondary-dark);
+      color: white;
+    }
+
+    .quantity {
+      min-width: 30px;
+      text-align: center;
+    }
+
+    .recommended-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background-color: var(--secondary);
+      color: var(--primary-dark);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    /* Floating Navigation */
+    .floating-nav {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(62, 39, 35, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 50px;
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      gap: 1rem;
+      z-index: 999;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .floating-nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floating-nav-item:hover {
+      background-color: var(--secondary);
+      transform: translateY(-5px);
+    }
+
+    .floating-nav-item img {
+      width: 25px;
+      height: 25px;
+      transition: var(--transition);
+    }
+
+    .floating-nav-item:hover img {
+      transform: scale(1.2);
+    }
+
+    .floating-nav-item.active {
+      background-color: var(--secondary);
+    }
+
+    /* Scroll to Top Button */
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      background-color: var(--secondary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 999;
+      box-shadow: 0 4px 15px rgba(255, 174, 66, 0.3);
+    }
+
+    .scroll-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-top:hover {
+      background-color: var(--secondary-dark);
+      transform: translateY(-5px);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--primary-dark);
+      padding: 5rem 8% 2rem;
+      position: relative;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-column h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: var(--secondary);
+    }
+
+    .footer-column p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      color: var(--text-lighter);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: var(--text-lighter);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--secondary);
+      padding-left: 5px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background-color: var(--secondary);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid var(--primary-light);
+      color: var(--text-lighter);
+      font-size: 0.9rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1200px) {
+      .hero {
+        padding: 0 5%;
+      }
+
+      .hero-image {
+        width: 400px;
+        height: 400px;
+      }
+
+      .menu-section {
+        padding: 5rem 5%;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .hero {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding-top: 6rem;
+      }
+
+      .hero-content {
+        margin-bottom: 3rem;
+      }
+
+      .hero-image {
+        width: 350px;
+        height: 350px;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: var(--primary-dark);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        transition: var(--transition);
+        z-index: 1000;
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .hamburger {
+        display: block;
+        z-index: 1001;
+      }
+
+      .hamburger.active div:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+
+      .hamburger.active div:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active div:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-image {
+        width: 300px;
+        height: 300px;
+      }
+
+      .dish-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+
+      .floating-nav {
+        padding: 0.6rem 1rem;
+        gap: 0.8rem;
+      }
+
+      .floating-nav-item {
+        width: 45px;
+        height: 45px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .navbar {
+        padding: 1rem 1.5rem;
+      }
+
+      .hero-content {
+        padding: 0 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-image {
+        width: 250px;
+        height: 250px;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .category-tabs {
+        gap: 0.5rem;
+      }
+
+      .category-tab {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-column h3 {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .btn {
+        padding: 0.7rem 1.5rem;
+      }
+
+      .dish-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-nav {
+        bottom: 1rem;
+        padding: 0.5rem;
+        gap: 0.5rem;
+      }
+
+      .floating-nav-item {
+        width: 40px;
+        height: 40px;
+      }
+
+      .floating-nav-item img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img style="border-radius: 30px ;" src="icon.ffz.png" alt="FastFoodZone Logo">
+        FastFoodZone
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home">Главная</a></li>
+        <li><a href="#menu">Меню</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+      <div class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </nav>
+
+    <div class="hero" id="home">
+      <div class="hero-content">
+        <h1>Вкусная еда быстрее, чем вы успеете проголодаться</h1>
+        <p>Пицца, бургеры, шаверма и холодные напитки — всё, что ты хочешь, в одном месте. Вкусно. Быстро. Сочно.</p>
+        <a href="#menu" class="btn">Смотреть меню</a>
+      </div>
+      <div class="hero-image">
+        <img src="spining_pizza.webp" alt="Вращающаяся пицца" class="rotating-dish">
+        <div class="dish-shadow"></div>
+      </div>
+      <div class="hero-bg"></div>
+    </div>
+  </header>
+
+  <section class="menu-section" id="menu">
+    <h2 class="section-title">Наше Меню</h2>
+
+    <div class="category-tabs">
+      <div class="category-tab active" data-category="pizza">Пицца</div>
+      <div class="category-tab" data-category="burger">Бургеры</div>
+      <div class="category-tab" data-category="shawarma">Шаверма</div>
+      <div class="category-tab" data-category="soda">Напитки</div>
+    </div>
+
+    <div class="dish-grid" id="pizza-category">
+      <!-- Pizza Items -->
+      <div class="dish-card">
+        <div class="recommended-badge">Хит</div>
+        <img src="margarita_pizza-min.webp" alt="Маргарита" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Маргарита</h3>
+          <p class="dish-desc">Классическая пицца с томатами, сыром и базиликом</p>
+          <div class="dish-footer">
+            <span class="dish-price">499 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img src="peperoni-min.webp" alt="Пепперони" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Пепперони</h3>
+          <p class="dish-desc">Острая салями, сыр моцарелла, томатный соус</p>
+          <div class="dish-footer">
+            <span class="dish-price">599 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img src="hawaiian-min.webp" alt="Гавайская" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Гавайская</h3>
+          <p class="dish-desc">Ветчина, ананасы, сыр, томатный соус</p>
+          <div class="dish-footer">
+            <span class="dish-price">549 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img src="cheese-min.webp" alt="Сырный" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Сырный</h3>
+          <p class="dish-desc">Моцарелла, пармезан, дорблю, эмменталь</p>
+          <div class="dish-footer">
+            <span class="dish-price">649 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img src="meat-min.webp" alt="Мясная" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Мясная</h3>
+          <p class="dish-desc">Бекон, ветчина, курица, салями, сыр</p>
+          <div class="dish-footer">
+            <span class="dish-price">679 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img src="veggie-min.webp" alt="Овощная" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Овощная</h3>
+          <p class="dish-desc">Оливки, грибы, перец, помидоры, лук</p>
+          <div class="dish-footer">
+            <span class="dish-price">519 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dish-grid" id="burger-category" style="display: none;">
+      <!-- Burger Items -->
+      <div class="dish-card">
+        <div class="recommended-badge">Хит</div>
+        <img src="burger-min.webp" alt="Классический бургер" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Классический бургер</h3>
+          <p class="dish-desc">Говяжья котлета, салат, помидор, лук, соус</p>
+          <div class="dish-footer">
+            <span class="dish-price">299 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img src="cheese_burger-min.webp" alt="Чизбургер" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Чизбургер</h3>
+          <p class="dish-desc">Говяжья котлета, сыр, салат, помидор, соус</p>
+          <div class="dish-footer">
+            <span class="dish-price">349 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img src="bacon_burger-min.webp" alt="Бургер с беконом" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Бургер с беконом</h3>
+          <p class="dish-desc">Говяжья котлета, бекон, сыр, салат, соус</p>
+          <div class="dish-footer">
+            <span class="dish-price">399 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img src="chicken_burger-min.webp" alt="Чикенбургер" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Чикенбургер</h3>
+          <p class="dish-desc">Хрустящая курица, салат, соус, булочка с кунжутом</p>
+          <div class="dish-footer">
+            <span class="dish-price">389 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dish-grid" id="shawarma-category" style="display: none;">
+      <!-- Shawarma Items -->
+      <div class="dish-card">
+        <div class="recommended-badge">Хит</div>
+        <img src="chicken_shawarma-min.webp" alt="Куриная шаверма" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Куриная шаверма</h3>
+          <p class="dish-desc">Курица, свежие овощи, соус, лаваш</p>
+          <div class="dish-footer">
+            <span class="dish-price">199 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img src="shawarma_beff-min.webp" alt="Говяжья шаверма" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Говяжья шаверма</h3>
+          <p class="dish-desc">Говядина, свежие овощи, соус, лаваш</p>
+          <div class="dish-footer">
+            <span class="dish-price">249 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img src="cheese_shawarma-min.webp" alt="Сырная шаверма" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Сырная</h3>
+          <p class="dish-desc">Курица, плавленый сыр, соус чесночный</p>
+          <div class="dish-footer">
+            <span class="dish-price">339 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dish-grid" id="soda-category" style="display: none;">
+      <!-- Soda Items -->
+      <div class="dish-card">
+        <img src="coca_cola-min.webp" alt="Кока-Кола" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Кока-Кола</h3>
+          <p class="dish-desc">Освежающий газированный напиток</p>
+          <div class="dish-footer">
+            <span class="dish-price">99 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img src="sprite-min.webp" alt="Спрайт" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Спрайт</h3>
+          <p class="dish-desc">Лимонно-лаймовый газированный напиток</p>
+          <div class="dish-footer">
+            <span class="dish-price">99 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img src="fanta-min.webp" alt="Фанта" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Фанта</h3>
+          <p class="dish-desc">Апельсиновый газированный напиток</p>
+          <div class="dish-footer">
+            <span class="dish-price">99 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <img src="sparkling_water-min.webp" alt="Минеральная вода" class="dish-image">
+        <div class="dish-info">
+          <h3 class="dish-name">Минеральная вода</h3>
+          <p class="dish-desc">Чистая питьевая вода без газа</p>
+          <div class="dish-footer">
+            <span class="dish-price">49 ₽</span>
+            <div class="quantity-control">
+              <button class="quantity-btn minus">-</button>
+              <span class="quantity">0</span>
+              <button class="quantity-btn plus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="scroll-top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6" />
+    </svg>
+  </div>
+
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-column about">
+        <h3>О нас</h3>
+        <p>FastFoodZone — это место, где вы найдёте лучшие бургеры, пиццу, шаверму и напитки. Мы готовим с любовью и
+          доставляем быстро!</p>
+        <div class="social-links">
+          <a href="#" class="social-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
+          <a href="#" class="social-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="#" class="social-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-column links">
+        <h3>Быстрые ссылки</h3>
+        <ul class="footer-links">
+          <li><a href="#home">Главная</a></li>
+          <li><a href="#menu">Меню</a></li>
+          <li><a href="#about">О нас</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column contact">
+        <h3>Контакты</h3>
+        <ul class="footer-links">
+          <li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-map-pin">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg> Ул. Феруз, д. 110, Узбекистан</a></li>
+          <li><a href="tel:+998991051610"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" class="feather feather-phone">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                </path>
+              </svg> +998 (99) 105-16-10</a></li>
+          <li><a href="mailto:info@fastfoodzone.uz"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" class="feather feather-mail">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg> info@fastfoodzone.uz</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column hours">
+        <h3>Часы работы</h3>
+        <ul class="footer-links">
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-clock">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg> Пн-Пт: 10:00 - 22:00</li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-clock">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg> Сб-Вс: 11:00 - 23:00</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 FastFoodZone. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Navigation
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Scroll to top button
+    const scrollTopBtn = document.querySelector('.scroll-top');
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.add('active');
+      } else {
+        scrollTopBtn.classList.remove('active');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Category tabs
+    const categoryTabs = document.querySelectorAll('.category-tab');
+    const dishGrids = {
+      pizza: document.getElementById('pizza-category'),
+      burger: document.getElementById('burger-category'),
+      shawarma: document.getElementById('shawarma-category'),
+      soda: document.getElementById('soda-category')
+    };
+
+    categoryTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs
+        categoryTabs.forEach(t => t.classList.remove('active'));
+
+        // Add active class to clicked tab
+        tab.classList.add('active');
+
+        // Hide all dish grids
+        Object.values(dishGrids).forEach(grid => {
+          grid.style.display = 'none';
+        });
+
+        // Show selected dish grid
+        const category = tab.getAttribute('data-category');
+        dishGrids[category].style.display = 'grid';
+
+        // Animate dish cards
+        animateDishCards(dishGrids[category]);
+      });
+    });
+
+    // Floating navigation
+    const floatingNavItems = document.querySelectorAll('.floating-nav-item');
+
+    floatingNavItems.forEach(item => {
+      item.addEventListener('click', () => {
+        // Remove active class from all items
+        floatingNavItems.forEach(i => i.classList.remove('active'));
+
+        // Add active class to clicked item
+        item.classList.add('active');
+
+        // Get target category
+        const target = item.getAttribute('data-target');
+
+        // Find corresponding tab and click it
+        const correspondingTab = document.querySelector(`.category-tab[data-category="${target}"]`);
+        if (correspondingTab) {
+          correspondingTab.click();
+
+          // Scroll to menu section
+          document.getElementById('menu').scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Rotating dish animation
+    const dishImages = [
+      'spining_pizza.webp',
+      'spining_burger.webp',
+      'spining_shawarma.webp',
+      'spining_soda.webp'
+    ];
+
+    let currentDishIndex = 0;
+    const rotatingDish = document.querySelector('.rotating-dish');
+
+    function changeDish() {
+      rotatingDish.style.opacity = 0;
+
+      setTimeout(() => {
+        currentDishIndex = (currentDishIndex + 1) % dishImages.length;
+        rotatingDish.src = dishImages[currentDishIndex];
+        rotatingDish.style.opacity = 1;
+      }, 500);
+    }
+
+    setInterval(changeDish, 3000);
+
+    // Quantity controls
+    document.querySelectorAll('.quantity-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const quantityElement = this.parentElement.querySelector('.quantity');
+        let quantity = parseInt(quantityElement.textContent);
+
+        if (this.classList.contains('minus') && quantity > 0) {
+          quantity--;
+        } else if (this.classList.contains('plus')) {
+          quantity++;
+        }
+
+        quantityElement.textContent = quantity;
+      });
+    });
+
+    // Animate dish cards on scroll
+    function animateDishCards(grid) {
+      const cards = grid.querySelectorAll('.dish-card');
+      cards.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add('animate');
+        }, index * 100);
+      });
+    }
+
+    // Initial animation for pizza cards
+    animateDishCards(dishGrids.pizza);
+
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.dish-card').forEach(card => {
+      observer.observe(card);
+    });
+
+    // Smooth scrolling for all links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
